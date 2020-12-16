@@ -1,28 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New</title>
-</head>
-<body>
-<h1>Add new Hotel</h1>
-  <form action="/hotels" method="POST">
-    <div>
-      <label for="name">Name</label>
-      <input type="text" id="title" name="hotel[name]">
-    </div>
+<% layout('layouts/boilerplate') %>  
 
-    <div>
-      <label for="location">Location</label>
-      <input type="text" id="location" name="hotel[location]">
+<h1>Add new Hotel</h1>
+<form action="/hotels" method="POST">
+
+    <div class="mb-3">
+      <label class="form-label" for="name">Name</label>
+      <input class="form-control" type="text" id="name" name="hotel[name]" required>
+      <div class="valid-feedback">
+          Looks good!
+      </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="location">Location</label>
+    <input class="form-control" type="text" id="location" name="hotel[location]" required>
+    <div class="valid-feedback">
+        Looks good!
     </div>
-    <button>Add new hotel</button>
+</div>
+
+<div class="mb-3">
+  <label class="form-label" for="price">Hotel Price</label>
+  <div class="input-group">
+      <span class="input-group-text" id="price-label">$</span>
+      <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+          aria-describedby="price-label" name="hotel[price]" required>
+  </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="image">Image URL</label>
+    <input class="form-control"id="image" name="hotel[image]" required>
+    <div class="valid-feedback">
+        Looks good!
+    </div>
+</div>
+
+  <div class="mb-3">
+    <label class="form-label" for="description">Description</label>
+    <textarea class="form-control" type="text" id="description" name="hotel[description]"
+        required></textarea>
+    <div class="valid-feedback">
+        Looks good!
+    </div>
+</div>
+
+<div class="mb-3">
+  <button class="btn btn-success">Add the hotel</button>
+</div>
+
   </form>
 
   <div class="mb-3">
     <a href="/hotels">List of all hotels</a>
   </div>
-  
-</body>
-</html>

@@ -1,5 +1,7 @@
 const mongoose=require('mongoose');
 const cities=require('./cities')
+const names=require('./names')
+const description=require('./description')
 const Hotel=require('../models/hotel')
 
 mongoose.connect('mongodb://localhost:27017/hotel',{
@@ -17,11 +19,15 @@ db.once("open",()=>{
 
 const seedDB=async()=>{
   await Hotel.deleteMany({});
-  for(let i=0;i<5;i++){
-    const random5=Math.floor(Math.random()*5);
+  for(let i=0;i<10;i++){
+    const price=Math.floor(Math.random()*200);
     const hot=new Hotel({
-      name:`${cities[random5].name}`,
-      location:`${cities[random5].location}`
+      name:`${names[i].name}`,
+      location:`${cities[i].District}`,
+      state:`${cities[i].State}`,
+      image:'https://unsplash.com/photos/41D3oPlRbHQ',
+      description:`${description[i].description}`,
+      price
     })
     await hot.save();
   }

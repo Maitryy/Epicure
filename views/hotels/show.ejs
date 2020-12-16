@@ -1,25 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Show</title>
-</head>
-<body>
-  <h1><%= hotel.name %> </h1>
-  <h2><%= hotel.location %> </h2>
-
-    <a href="/hotels/<%= hotel._id %>/edit">Edit this hotel</a>
-    <br>
-    <p>
-    <form action="/hotels/<%= hotel._id %>?_method=DELETE" method="POST">
-      <button>Delele this hotel</button>
-    </form>
-  </p>
+<% layout('layouts/boilerplate')%>
+<div class="row">
+    <div class="col-6">
+      <div class="card">
+        <img src="<%= hotel.image %>" class="card-img-top" alt="...">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><%= hotel.name%></h5>
+                <p class="card-text"><%= hotel.description%></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-muted"><%= hotel.location%></li>
+                <li class="list-group-item">$<%= hotel.price%>/night</li>
+            </ul>
+            
+            <div class="card-body">
+            <a href="/hotels/<%= hotel._id %>/edit">
+              <button class="btn btn-info">Edit</button></a>
+                <form class="d-inline" action="/hotels/<%= hotel._id %>?_method=DELETE" method="POST">
+                  <button class="btn btn-danger">Delele</button>
+                </form>
+              </p>
+            </div>
+            <div class="card-footer text-muted">
+              2 days ago
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    
 
   <footer>
     <a href="/hotels">All hotels</a>
   </footer>
-  
-</body>
-</html>

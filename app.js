@@ -2,6 +2,7 @@ const express=require('express');
 const path=require('path')
 const mongoose=require('mongoose')
 const Hotel=require('./models/hotel')
+const ejsMate=require('ejs-mate')
 const methodOverride=require('method-override');
 const { findByIdAndUpdate, findByIdAndDelete } = require('./models/hotel');
 
@@ -20,6 +21,7 @@ db.once("open",()=>{
 
 const app=express();
 
+app.engine('ejs',ejsMate)
 app.set('view engine','ejs')
 app.set('views',path.join(__dirname,'views'))
 
@@ -30,7 +32,7 @@ app.get('/',(req,res)=>{
   res.render('home')
 })
 
-app.get('/hotels',async(req,res)=>{
+app.get('/hotels', async(req,res)=>{
   const hotels=await Hotel.find({});
   res.render('hotels/index', {hotels})
 })
@@ -64,6 +66,7 @@ app.put('/hotels/:id',async (req,res)=>{
 app.delete('/hotels/:id',async(req,res)=>{
   const {id}=req.params;
   await Hotel.findByIdAndDelete(id)
+
   res.redirect('/hotels')
 })
 
