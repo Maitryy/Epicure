@@ -5,7 +5,7 @@
         <form action="/hotels/<%=hotel._id%>?_method=PUT" method="POST" novalidate class="validated-form">
             <div class="mb-3">
                 <label class="form-label" for="name">name</label>
-                <input class="form-control" type="text" id="name" name="hotel[name]"
+                <input class="form-control" type="text" id="name" name="hotel[name]" 
                     value="<%=hotel.name %>" required>
                 <div class="valid-feedback">
                     Looks good!
@@ -26,7 +26,7 @@
                     <span class="input-group-text" id="price-label">$</span>
                     <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
                         aria-describedby="price-label" name="hotel[price]" value="<%=hotel.price %>"
-                        required>\<div class="valid-feedback">
+                        required><div class="valid-feedback">
                         Looks good!
                     </div>
                 </div>

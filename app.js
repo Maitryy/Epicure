@@ -1,15 +1,31 @@
 const express=require('express');
 const path=require('path')
 const mongoose=require('mongoose')
-const Hotel=require('./models/hotel')
 const ejsMate=require('ejs-mate')
+const Joi=require('joi')
+const {hotelSchema,reviewSchema}=require('./schemas.js')
 const methodOverride=require('method-override');
-const { findByIdAndUpdate, findByIdAndDelete } = require('./models/hotel');
+const catchAsync=require('./utils/catchAsync')
+const flash=require('connect-flash')
+const ExpressError=require('./utils/ExpressError')
+const Hotel=require('./models/hotel')
+const Review=require('./models/review');
+const hotel = require('./models/hotel');
+const session=require('express-session')
+const passport=require('passport')
+const LocalStrategy=require('passport-local')
+const User=require('./models/user')
+
+const userRoutes=require('./routes/users')
+const hotelRoutes=require('./routes/hotels')
+const reviewRoutes=require('./routes/reviews')
+
 
 mongoose.connect('mongodb://localhost:27017/hotel', {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify:false
 });
 
 const db=mongoose.connection;
@@ -27,47 +43,53 @@ app.set('views',path.join(__dirname,'views'))
 
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'))
+app.use(express.static(path.join(__dirname,'public')))
+
+const sessionConfig={
+  secret:'himehul',
+  resave:false,
+  saveUninitialized:true,
+  cookie:{
+    httpOnly:true,
+    expires:Date.now() +1000*60*60, 
+    maxAge:1000*60*60
+  }
+}
+app.use(session(sessionConfig))
+app.use(flash())
+
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new LocalStrategy(User.authenticate()))
+
+passport.serializeUser(User.serializeUser()) 
+passport.deserializeUser(User.deserializeUser())
+
+app.use((req,res,next)=>{
+  res.locals.currentUser=req.user
+  res.locals.success=req.flash('success')
+  res.locals.error=req.flash('error')
+  next()
+})
+
+app.get('/')
+
+app.use('/',userRoutes)
+app.use('/',hotelRoutes)
+app.use('/hotels/:id/reviews',reviewRoutes)
 
 app.get('/',(req,res)=>{
   res.render('home')
+}) 
+
+app.all('*',(req,res,next)=>{
+  next(new ExpressError('Page not found',404))
 })
 
-app.get('/hotels', async(req,res)=>{
-  const hotels=await Hotel.find({});
-  res.render('hotels/index', {hotels})
-})
-
-app.get('/hotels/new',(req,res)=>{
-  res.render('hotels/new')
-})
-
-app.post('/hotels',async (req,res)=>{
-  const hotel=new Hotel(req.body.hotel)
-  await hotel.save();
-  res.redirect(`/hotels/${hotel._id}`)
-})
-
-app.get('/hotels/:id', async(req,res)=>{
-  const hotel=await Hotel.findById(req.params.id)
-  res.render('hotels/show',{hotel})
-})
-
-app.get('/hotels/:id/edit', async(req,res)=>{
-  const hotel=await Hotel.findById(req.params.id)
-  res.render('hotels/edit',{hotel})
-})
-
-app.put('/hotels/:id',async (req,res)=>{
-  const {id}=req.params
-  const hotel=await Hotel.findByIdAndUpdate(id,{...req.body.hotel})
-  res.redirect(`/hotels/${hotel._id}`)
-})
-
-app.delete('/hotels/:id',async(req,res)=>{
-  const {id}=req.params;
-  await Hotel.findByIdAndDelete(id)
-
-  res.redirect('/hotels')
+app.use((err,req,res,next)=>{
+ const {statusCode=500}=err;
+ if(!err.message) err.message='something is fishy'
+ res.status(statusCode).render('error',{err})
 })
 
 app.listen(8080,()=>{

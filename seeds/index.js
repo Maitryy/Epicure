@@ -22,6 +22,7 @@ const seedDB=async()=>{
   for(let i=0;i<10;i++){
     const price=Math.floor(Math.random()*200);
     const hot=new Hotel({
+      author:'5fddc15c528af7464c3d8d24',
       name:`${names[i].name}`,
       location:`${cities[i].District}`,
       state:`${cities[i].State}`,
