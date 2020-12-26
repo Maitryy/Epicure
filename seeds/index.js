@@ -3,6 +3,7 @@ const cities=require('./cities')
 const names=require('./names')
 const description=require('./description')
 const Hotel=require('../models/hotel')
+const fetch = require("node-fetch");
 
 mongoose.connect('mongodb://localhost:27017/hotel',{
   useNewUrlParser:true,
@@ -22,15 +23,22 @@ const seedDB=async()=>{
   for(let i=0;i<10;i++){
     const price=Math.floor(Math.random()*200);
     const hot=new Hotel({
-      author:'5fddc15c528af7464c3d8d24',
+      author:'5fe720450770c100822c46dc',
       name:`${names[i].name}`,
-      location:`${cities[i].District}`,
-      state:`${cities[i].State}`,
+      city:`${cities[i].District}`,
+      country:'India',
       image:'https://unsplash.com/photos/41D3oPlRbHQ',
       description:`${description[i].description}`,
-      price
+      price,
+      latitude:'',
+      longitude:''
     })
-    await hot.save();
+  const found=await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cities[i].District}%2C%20India&key=158fe50acde04a9a87ef90f8df4460fa`)
+  const data= await found.json();
+  const {lat,lng} =data.results[0].geometry;
+  hot.latitude=lat;
+  hot.longitude=lng;
+  await hot.save();
   }
 }
 

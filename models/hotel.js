@@ -7,10 +7,12 @@ const HotelSchema=new Schema({
   location:String,
 	state : String,
 	city : String,
-  location : String,
+  country : String,
   image: String,
   price: Number,
   description: String,
+  latitude: Number,
+  longitude: Number,
   author:{
     type:Schema.Types.ObjectId,
     ref:'User'
