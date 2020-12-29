@@ -1,11 +1,15 @@
 const express=require('express')
 const mongoose=require('mongoose')
 const router=express.Router()
+require('dotenv').config()
 const catchAsync=require('../utils/catchAsync')
 const ExpressError=require('../utils/ExpressError')
 const Hotel=require('../models/hotel')
 const {isLoggedIn,isAuthor,validateHotel}=require('../middleware')
 const fetch = require("node-fetch");
+const mbxGeocoding= require("@mapbox/mapbox-sdk/services/geocoding")
+const mapBoxToken= process.env.MAPBOX_TOKEN;
+const geocoder=mbxGeocoding({accessToken: mapBoxToken});
 
 router.get('/hotels', catchAsync(async(req,res)=>{
   const hotels=await Hotel.find({});
