@@ -1,122 +1,122 @@
 body.dark{
-  color: #F3CECE;
-background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027); 
-background: linear-gradient(to right, #2C5364, #203A43, #0F2027); 
-
-/* 
-background: -webkit-linear-gradient(to bottom, #191654, #43C6AC); 
-background: linear-gradient(to bottom, #191654, #43C6AC); */
-
-background: #0F2027;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
-background: #141E30;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-body.dark .navbar-light{
-  background-color: #343A40!important;
-  color: white!important;
-}
-
-body.dark .nav-link,body.dark .navbar-brand{
-  color: rgb(221, 211, 197)!important;
-}
-
-body.dark .nav-link:hover{
-  color: white!important;
-}
-
-
-.checkbox{
-  opacity: 0;
-  position: absolute;
-}
-
-body.dark .label{
-  background-color: #f39c12;
-}
-
-.label{
-  background-color: #111;
-  display: flex;
-  border-radius:50px;
-  align-items: center;
-  justify-content: space-between;
-  height: 26px;
-  width: 52px;
-  margin: 0.5em;
-  position: relative;
-  transform: scale(1.2);
-}
-
-.ball{
-  background-color: white;
-  border-radius: 50%;
-  position: absolute;
-  top: 2px;
-  left:2px;
-  width: 22px;
-  height: 22px;
-  transition: transform 0.2s linear;
-}
-
-.checkbox:checked +.label .ball{
-  transform: translateX(24px);
-}
-
-.fa-moon{
-  color: black;
-  margin-left:2px;
-}
-
-.fa-sun{
-  color: #f39c12;
-  margin-right: 2px;
-}
-
-
-body.dark .card-container{
-  background-color: #488286;
-  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px;
-}
-
-body.dark .card-title{
-  color:#351431;
-}
-
-body.dark .hover-border::after{
-  content: '';
-  width: 0%;
-  height:3px;
-  background: #f12711;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #f5af19, #f12711);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #f5af19, #f12711); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  position: absolute;
-  bottom: 0%;
-  left:50%;
-  border-radius: 10px;
-  transition: all 0.5s ease;
-}
-
-body.dark .hover-border:hover::after{
-  left:40%;
-  width:20%;
-}
-
-body.dark .card-text .text-muted{
-  color:#f39c12!important;
-  color:purple!important;
-}
-
-body.dark ::placeholder{
-  color:#f39c12;
-}
-
-/* 
-body.dark .navbar .collapse-navbar{
-  background-color: #3B547F!important;
-} */
+    color: #F3CECE;
+  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027); 
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); 
+  
+  /* 
+  background: -webkit-linear-gradient(to bottom, #191654, #43C6AC); 
+  background: linear-gradient(to bottom, #191654, #43C6AC); */
+  
+  background: #0F2027;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+  
+  background: #141E30;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  
+  body.dark .navbar-light{
+    background-color: #343A40!important;
+    color: white!important;
+  }
+  
+  body.dark .nav-link,body.dark .navbar-brand{
+    color: rgb(221, 211, 197)!important;
+  }
+  
+  body.dark .nav-link:hover{
+    color: white!important;
+  }
+  
+  
+  .checkbox{
+    opacity: 0;
+    position: absolute;
+  }
+  
+  body.dark .label{
+    background-color: #f39c12;
+  }
+  
+  .label{
+    background-color: #111;
+    display: flex;
+    border-radius:50px;
+    align-items: center;
+    justify-content: space-between;
+    height: 26px;
+    width: 52px;
+    margin: 0.5em;
+    position: relative;
+    transform: scale(1.2);
+  }
+  
+  .ball{
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left:2px;
+    width: 22px;
+    height: 22px;
+    transition: transform 0.2s linear;
+  }
+  
+  .checkbox:checked +.label .ball{
+    transform: translateX(24px);
+  }
+  
+  .fa-moon{
+    color: black;
+    margin-left:2px;
+  }
+  
+  .fa-sun{
+    color: #f39c12;
+    margin-right: 2px;
+  }
+  
+  
+  body.dark .card-container{
+    background-color: #488286;
+    box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px;
+  }
+  
+  body.dark .card-title{
+    color:#351431;
+  }
+  
+  body.dark .hover-border::after{
+    content: '';
+    width: 0%;
+    height:3px;
+    background: #f12711;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f5af19, #f12711);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f5af19, #f12711); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    position: absolute;
+    bottom: 0%;
+    left:50%;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+  }
+  
+  body.dark .hover-border:hover::after{
+    left:40%;
+    width:20%;
+  }
+  
+  body.dark .card-text .text-muted{
+    color:#f39c12!important;
+    color:purple!important;
+  }
+  
+  body.dark ::placeholder{
+    color:#f39c12;
+  }
+  
+  /* 
+  body.dark .navbar .collapse-navbar{
+    background-color: #3B547F!important;
+  } */

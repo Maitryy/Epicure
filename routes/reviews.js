@@ -11,7 +11,12 @@ router.post('/', isLoggedIn, validateReview, catchAsync(async(req,res)=>{
   const hotel=await Hotel.findById(req.params.id)
   const review=new Review(req.body.review)
   review.author=req.user._id
-  console.log(review.author)
+  const now=new Date();
+  review.time.hours= now.getHours();
+  review.time.day= now.getDay();
+  review.time.month= now.getMonth();
+  review.time.year= now.getFullYear();
+  //console.log(review);
   hotel.reviews.push(review)
   await review.save()
   await hotel.save()

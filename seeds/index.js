@@ -23,21 +23,16 @@ const seedDB=async()=>{
   for(let i=0;i<10;i++){
     const price=Math.floor(Math.random()*200);
     const hot=new Hotel({
-      author:'5fddc15c528af7464c3d8d24',
+      author:'5fe720450770c100822c46dc',
       name:`${names[i].name}`,
       city:`${cities[i].District}`,
       country:'India',
-      image:'https://source.unsplash.com/900x900/?restaurants,hotels,cafes',
+      image:'https://unsplash.com/photos/41D3oPlRbHQ',
       description:`${description[i].description}`,
       price,
-      geometry:{
-        type:"Point",
-        coordinates:[72.8311,21.17]
-      },
       latitude:'',
       longitude:''
     })
-    
   const found=await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cities[i].District}%2C%20India&key=158fe50acde04a9a87ef90f8df4460fa`)
   const data= await found.json();
   const {lat,lng} =data.results[0].geometry;

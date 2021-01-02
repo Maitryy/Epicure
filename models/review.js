@@ -7,6 +7,13 @@ const reviewSchema=new Schema({
   author:{
     type:Schema.Types.ObjectId,
     ref:'User'
+  },
+  time:
+  {
+     hours:Number,
+     day:Number,
+     month:Number,
+     year:Number
   }
 });
 
