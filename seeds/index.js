@@ -5,7 +5,7 @@ const description=require('./description')
 const Hotel=require('../models/hotel')
 const fetch = require("node-fetch");
 
-mongoose.connect('mongodb://localhost:27017/hotel',{
+mongoose.connect('mongodb://localhost:27017/hotels',{
   useNewUrlParser:true,
   useCreateIndex:true,
   useUnifiedTopology:true
@@ -23,7 +23,7 @@ const seedDB=async()=>{
   for(let i=0;i<10;i++){
     const price=Math.floor(Math.random()*200);
     const hot=new Hotel({
-      author:'5fe720450770c100822c46dc',
+      author:'5fe47779f7a41581f4a45352',
       name:`${names[i].name}`,
       city:`${cities[i].District}`,
       country:'India',

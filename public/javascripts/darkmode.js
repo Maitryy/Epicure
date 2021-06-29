@@ -1,33 +1,30 @@
 window.onload=function(){
 
-    const checkbox=document.getElementById('chk');
-    let dark=localStorage.getItem("dark");
-    
-    const toggleDarkMode=()=>{
-      document.body.classList.toggle('dark');
-      if(dark=="enabled"){
-        localStorage.setItem("dark","disabled");
-      }
-      else{
-        localStorage.setItem("dark","enabled");
-       }
-    };
-    
-    checkbox.addEventListener('change',()=>{
-      // if(dark!=="enabled"){
-      //   console.log(dark);
-      //   enableDarkMode();
-      // } 
-      // else {
-      //   console.log(dark);
-      //   console.log("444");
-      //   disableDarkMode();
-      // }
-      toggleDarkMode();
-      //document.body.classList.toggle('dark');
-    })
-    
+  //toggle button
+  let darkMode = localStorage.getItem("darkMode");
+  const toggleButton = document.getElementById("toggle");
+  const darkModeToggle = document.querySelector(".btn-toggle");
+  
+  const enableDarkMode = () => {
+    document.body.classList.add("dark");
+    localStorage.setItem("darkMode", "enabled");
+    toggleButton.checked = true;
+  };
+  
+  const disableDarkMode = () => {
+    document.body.classList.remove("dark");
+    localStorage.setItem("darkMode", null);
+    toggleButton.checked = false;
+  };
+  if (darkMode === "enabled") {
+    enableDarkMode();
+  }
+  darkModeToggle.addEventListener("click", () => {
+    darkMode = localStorage.getItem("darkMode");
+    if (darkMode !== "enabled") {
+      enableDarkMode();
+    } else {
+      disableDarkMode();
     }
-  
-  
-  
+  });
+    }
